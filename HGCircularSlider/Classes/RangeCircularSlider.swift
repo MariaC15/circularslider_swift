@@ -62,6 +62,7 @@ open class RangeCircularSlider: CircularSlider {
      *
      * The default value of this property is nil
      */
+    @IBInspectable
     open var startThumbImage: UIImage?
     
     
@@ -74,6 +75,7 @@ open class RangeCircularSlider: CircularSlider {
      * The end value is also adjusted to match (startPointValue + distance) automatically if the distance is different to -1 (SeeAlso: startPointValue, distance)
      * The default value of this property is 0.0.
      */
+    @IBInspectable
     override open var minimumValue: CGFloat {
         didSet {
             if startPointValue < minimumValue {
@@ -124,6 +126,7 @@ open class RangeCircularSlider: CircularSlider {
      *
      * The default value of this property is 0.0.
      */
+    @IBInspectable
     open var startPointValue: CGFloat = 0.0 {
         didSet {
             guard oldValue != startPointValue else { return }
@@ -148,6 +151,7 @@ open class RangeCircularSlider: CircularSlider {
      *
      * The default value of this property is 0.5
      */
+    @IBInspectable
     override open var endPointValue: CGFloat {
         didSet {
             if oldValue == endPointValue && distance <= 0 {
@@ -172,18 +176,21 @@ open class RangeCircularSlider: CircularSlider {
      * The center of the start thumb
      * Used to know in which thumb is the user gesture
      */
+    @IBInspectable
     fileprivate var startThumbCenter: CGPoint = CGPoint.zero
     
     /**
      * The center of the end thumb
      * Used to know in which thumb is the user gesture
      */
+    @IBInspectable
     fileprivate var endThumbCenter: CGPoint = CGPoint.zero
     
     /**
      * The last touched thumb
      * By default the value is none
      */
+    
     fileprivate var selectedThumb: SelectedThumb = .none
     
     /**
@@ -289,6 +296,7 @@ open class RangeCircularSlider: CircularSlider {
 
 
     // MARK: - Helpers
+    
     open func thumb(for touchPosition: CGPoint) -> SelectedThumb {
         if isThumb(withCenter: startThumbCenter, containsPoint: touchPosition) {
             return .startThumb
