@@ -63,13 +63,14 @@ extension CircularSlider {
 
     /// Draw the circular slider
     internal func drawCircularSlider(inContext context: CGContext) {
+        drawMinuteMarkers(inContext:context)
         diskColor.setFill()
         trackColor.setStroke()
 
         let circle = Circle(origin: bounds.center, radius: self.radius)
         let sliderArc = Arc(circle: circle, startAngle: CircularSliderHelper.circleMinValue, endAngle: CircularSliderHelper.circleMaxValue)
         CircularSlider.drawArc(withArc: sliderArc, lineWidth: backtrackLineWidth, inContext: context)
-        drawMinuteMarkers(inContext:context)
+        
     }
     
     
