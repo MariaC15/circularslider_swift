@@ -69,6 +69,7 @@ extension CircularSlider {
         let circle = Circle(origin: bounds.center, radius: self.radius)
         let sliderArc = Arc(circle: circle, startAngle: CircularSliderHelper.circleMinValue, endAngle: CircularSliderHelper.circleMaxValue)
         CircularSlider.drawArc(withArc: sliderArc, lineWidth: backtrackLineWidth, inContext: context)
+        drawMinuteMarkers(inContext: context)
     }
     
     
@@ -144,4 +145,27 @@ extension CircularSlider {
 
         return thumbOrigin
     }
+    
+    internal func drawMinuteMarkers(inContext context: CGContext) {
+            context.saveGState()
+
+            let center = bounds.center
+            let circle = Circle(origin: center, radius: self.radius)
+            let markerLength: CGFloat = 10.0 // Longitud de los marcadores
+            let markerColor: UIColor = .black // Color de los marcadores
+
+            for minute in 0..<60 {
+                let angle = CGFloat(minute) * (CGFloat.pi * 2.0 / 60.0) - CGFloat.pi / 2.0
+                let startPoint = CircularSliderHelper.endPoint(fromCircle: circle, angle: angle)
+                let endPoint = CircularSliderHelper.endPoint(fromCircle: circle, angle: angle)
+
+                context.setStrokeColor(markerColor.cgColor)
+                context.setLineWidth(1.0)
+                context.move(to: CGPoint(x: startPoint.x, y: startPoint.y))
+                context.addLine(to: CGPoint(x: endPoint.x, y: endPoint.y))
+                context.strokePath()
+            }
+
+            context.restoreGState()
+        }
 }
