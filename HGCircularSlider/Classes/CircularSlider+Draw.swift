@@ -69,7 +69,7 @@ extension CircularSlider {
         let circle = Circle(origin: bounds.center, radius: self.radius)
         let sliderArc = Arc(circle: circle, startAngle: CircularSliderHelper.circleMinValue, endAngle: CircularSliderHelper.circleMaxValue)
         CircularSlider.drawArc(withArc: sliderArc, lineWidth: backtrackLineWidth, inContext: context)
-        drawMinuteMarkers(inContext: context)
+        drawMinuteMarkers(inContext:context)
     }
     
     
